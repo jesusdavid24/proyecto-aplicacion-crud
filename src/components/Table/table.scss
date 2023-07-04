@@ -1,0 +1,49 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  width: 100%;
+}
+
+.title-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-container {
+  border: 3px solid gray;
+  margin: 5px;
+}
+
+table {
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  background: lightgray;
+}
+
+th {
+  padding: 20px 15px;
+  font-weight: 700;
+  width: fit-content;
+  text-align: left;
+}
+
+td {
+  padding: 15px;
+  border-bottom: solid 1px gray;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background: rgba(211, 211, 211, 0.715);
+}
