@@ -21,13 +21,13 @@ const Header = ({ handleViewPage }) => {
   if (menu == false) {
     return (
       <header className="header">
-        <div className="name-logo">
+        <div className="logo-container">
           <img src="../../../public/logo.svg" className="header__logo" />
           <h1 className="header__title">My Site</h1>
         </div>
         <div className="menu-container">
           <h2 className="header__message">Get started</h2>
-          <button className="open-menu" onClick={handleMenu}>
+          <button className="header__open-menu" onClick={handleMenu}>
             <i className="bi bi-list"></i>
           </button>
         </div>
@@ -36,17 +36,20 @@ const Header = ({ handleViewPage }) => {
   } else {
     return (
       <header className="header">
-        <div className="name-logo">
+        <div className="logo-container">
           <img src="../../../public/logo.svg" className="header__logo" />
           <h1 className="header__title">My Site</h1>
         </div>
         <div className="menu-container">
-          <h2>Get started</h2>
-          <nav className="nav">
-            <ul className="nav-ul">
-              <button className="close-menu" onClick={handleMenu}>
-                <i className="bi bi-list"></i>
-              </button>
+          <h2 className="header__message">Get started</h2>
+          <button className="header__open-menu" onClick={handleMenu}>
+            <i className="bi bi-list"></i>
+          </button>
+          <nav className="header__menu">
+            <button className="header__close-menu" onClick={handleMenu}>
+              <i className="bi bi-x x-button"></i>
+            </button>
+            <ul>
               <li onClick={handleProductsPage}>Products</li>
               <li onClick={handleContactPage}>Contact</li>
             </ul>
