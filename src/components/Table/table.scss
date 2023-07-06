@@ -1,49 +1,108 @@
-.main {
+.table-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  margin-right: 20px;
 
-  width: 100%;
-}
+  .presentation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
-.title-button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
+    .presentation__title {
+      font-size: 30px;
+    }
 
-.table-container {
-  border: 3px solid gray;
-  margin: 5px;
-}
+    .presentation__add-button {
+      width: 65px;
+      height: 40px;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      background-color: rgb(94, 143, 235);
+      cursor: pointer;
+    }
+  }
 
-table {
-  font-size: 14px;
-  border-collapse: collapse;
-  width: 100%;
-}
+  .table {
+    margin-top: 20px;
 
-thead {
-  background: lightgray;
-}
+    .products-table {
+      width: 100%;
+      font-size: 14px;
+      border-collapse: collapse;
+      border-spacing: 0;
+      box-shadow: 0px 3px 8px 0px rgba(201, 201, 201, 1);
+      border-radius: 10px;
+    }
 
-th {
-  padding: 20px 15px;
-  font-weight: 700;
-  width: fit-content;
-  text-align: left;
-}
+    .products-table thead {
+      height: fit-content;
+      border-radius: 50px;
+      background-color: rgb(247, 247, 247);
+    }
 
-td {
-  padding: 15px;
-  border-bottom: solid 1px gray;
-}
+    .products-table thead th {
+      width: calc(75% / 4);
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .products-table thead th:first-child {
+      width: 25%;
+      text-align: start;
+      font-weight: 700;
+      padding: 20px 15px;
+      padding-left: 30px;
+      border-top-left-radius: 10px;
+    }
 
-tbody tr {
-  cursor: pointer;
-}
+    .products-table thead th:last-child {
+      border-top-right-radius: 10px;
+    }
 
-tbody tr:hover {
-  background: rgba(211, 211, 211, 0.715);
+    .products-table tbody tr {
+      text-align: center;
+      color: rgb(101, 101, 101);
+      padding: 15px;
+      border-bottom: solid 1px rgb(223, 222, 222);
+      cursor: pointer;
+    }
+
+    .products-table tbody tr:hover {
+      background: rgba(211, 211, 211, 0.715);
+    }
+
+    .products-table tbody tr td {
+      padding: 15px;
+    }
+
+    .products-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .products-table tbody tr td:first-child {
+      text-align: start;
+      font-weight: 700;
+      color: black;
+      padding-left: 30px;
+    }
+
+    .products-table__edit,
+    .products-table__delete {
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: rgb(94, 143, 235);
+      margin: 2px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
 }

@@ -15,51 +15,62 @@ const Contact = () => {
     //     <h2>cristian.jimenezsa@hotmail.com</h2>
     //   </div>
     // </div>
-    <div class="contact-container">
-      <div class="contact-content">
-        <h1 class="contact-content__title">THE CREW</h1>
+    <div className="contact-container">
+      <div className="contact-content">
+        <h1 className="contact-content__title">THE CREW</h1>
 
-        <div class="content__info">
-          <h2 class="content__info__title">WHO WE ARE?</h2>
+        <div className="content__info">
+          <h2 className="content__info__title">WHO WE ARE?</h2>
 
-          <p class="content__ info__paragraph">
+          <p className="content__ info__paragraph">
             We are a team of talents from the Colombian coast at the service of
             programming and web development. Working in various locations from
             the world.
           </p>
         </div>
       </div>
-      <section class="container-images">
-        <div class="container-images__img">
-          <img class="container-images__pictures" src="../../public/yo.jpg" />
-          <h3 class="container-images__profession">FULLSTACK DEVELOPER</h3>
-          <h3 class="container-images__name">Cristian Jimenez</h3>
-          <h3 class="container-images__email">
+      <section className="container-images">
+        <div className="container-images__img">
+          <img
+            className="container-images__pictures"
+            src="../../public/contact__Cristian.jpg"
+          />
+          <h3 className="container-images__profession">FULLSTACK DEVELOPER</h3>
+          <h3 className="container-images__name">Cristian Jimenez</h3>
+          <h3 className="container-images__email">
             cristian.jimenezsa@hotmail.com
           </h3>
-          <a
-            href="https://github.com/Cristianjs93"
-            target="_blank"
-            className="container-images__github"
-          >
-            GitHub
-          </a>
+          <h3 className="container-images__github">
+            Github: &nbsp;
+            <a
+              href="https://github.com/Cristianjs93"
+              target="_blank"
+              className="container-images__github"
+            >
+              Cristianjs93
+            </a>
+          </h3>
         </div>
-        <div class="container-images__img">
+        <div className="container-images__img">
           <img
-            class="container-images__pictures"
-            src="https://ca.slack-edge.com/T03KUKHBV-U05DWC543QQ-9ae604b8e0f5-512"
+            className="container-images__pictures"
+            src="../../public/contact__Jesus.jpeg"
           />
-          <h3 class="container-images__profession">FULLSTACK DEVELOPER</h3>
-          <h3 class="container-images__name">Jesus Bravo</h3>
-          <h3 class="container-images__email">jesusBravoexample@test.com</h3>
-          <a
-            href="https://github.com/Cristianjs93"
-            target="_blank"
-            className="container-images__github"
-          >
-            GitHub
-          </a>
+          <h3 className="container-images__profession">FULLSTACK DEVELOPER</h3>
+          <h3 className="container-images__name">Jesus Bravo</h3>
+          <h3 className="container-images__email">
+            jesusBravoexample@test.com
+          </h3>
+          <h3 className="container-images__github">
+            Github: &nbsp;
+            <a
+              href="https://github.com/jesusdavid24"
+              target="_blank"
+              className="container-images__github"
+            >
+              jesusdavid24
+            </a>
+          </h3>
         </div>
       </section>
     </div>

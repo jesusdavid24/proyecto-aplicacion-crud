@@ -7,6 +7,10 @@ const Table = ({
   viewForm,
   handleViewForm,
 }) => {
+  const handleForm = (event) => {
+    handleViewForm(!viewForm);
+  };
+
   const handleDelete = (event) => {
     const id = event.target.id;
     const dele = products.filter((product) => product.id != id);
@@ -15,20 +19,22 @@ const Table = ({
     console.log(id);
   };
 
-  const handleForm = (event) => {
-    handleViewForm(!viewForm);
+  const handleEdit = (event) => {
+    handleViewForm("edit");
   };
 
   return (
-    <div className="main">
-      <div className="title-button">
-        <h1>Products list</h1>
-        <button onClick={handleForm}>{!viewForm ? "Add" : "Hide"}</button>
+    <div className="table-container">
+      <div className="presentation">
+        <h1 className="presentation__title">Products List</h1>
+        <button className="presentation__add-button" onClick={handleForm}>
+          {!viewForm ? "Add" : "Hide"}
+        </button>
       </div>
-      <div className="table-container">
-        <table>
+      <div className="table">
+        <table className="products-table">
           <thead>
-            <tr key="head">
+            <tr key="table-head">
               <th>PRODUCT NAME</th>
 
               <th>COLOR</th>
@@ -49,11 +55,22 @@ const Table = ({
 
                 <td>{product.category}</td>
 
-                <td>{product.price}</td>
+                <td>{`$${product.price}`}</td>
 
                 <td>
-                  <button>Edit</button>{" "}
-                  <button id={product.id} onClick={handleDelete}>
+                  <button
+                    id={product.id}
+                    className="products-table__edit"
+                    onClick={handleEdit}
+                  >
+                    Edit
+                  </button>
+                  <span>|</span>
+                  <button
+                    id={product.id}
+                    className="products-table__delete"
+                    onClick={handleDelete}
+                  >
                     Delete
                   </button>
                 </td>
