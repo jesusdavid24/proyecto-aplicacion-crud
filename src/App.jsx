@@ -9,21 +9,30 @@ function App() {
   const [products, setProducts] = useState([]);
   const [viewForm, setViewForm] = useState(false);
   const [viewPage, setViewPage] = useState("products");
+  const [editProduct, setEditProduct] = useState({});
 
   const handleAddProduct = (newProduct) => {
     setProducts([...products, newProduct]);
   };
 
-  const handleDeleteProduct = (dele) => {
-    setProducts(dele);
+  const handleDeleteProduct = (productDeleted) => {
+    setProducts(productDeleted);
   };
 
   const handleViewForm = (newViewForm) => {
     setViewForm(newViewForm);
   };
 
+  const handleEditProduct = (productToEdit) => {
+    setEditProduct(productToEdit);
+  };
+
   const handleViewPage = (newViewPage) => {
     setViewPage(newViewPage);
+  };
+
+  const handleEditedProducts = (editedProducts) => {
+    setProducts(editedProducts);
   };
 
   if (viewPage == "products") {
@@ -38,8 +47,16 @@ function App() {
             onDeleteProduct={handleDeleteProduct}
             viewForm={viewForm}
             handleViewForm={handleViewForm}
+            handleEditProduct={handleEditProduct}
           />
-          <Form onAddProduct={handleAddProduct} viewForm={viewForm} />
+          <Form
+            products={products}
+            onAddProduct={handleAddProduct}
+            viewForm={viewForm}
+            handleViewForm={handleViewForm}
+            editProduct={editProduct}
+            handleEditedProducts={handleEditedProducts}
+          />
         </div>
       </div>
     );

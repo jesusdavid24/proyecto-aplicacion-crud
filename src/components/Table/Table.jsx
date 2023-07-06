@@ -6,6 +6,7 @@ const Table = ({
   onDeleteProduct,
   viewForm,
   handleViewForm,
+  handleEditProduct,
 }) => {
   const handleForm = (event) => {
     handleViewForm(!viewForm);
@@ -13,14 +14,17 @@ const Table = ({
 
   const handleDelete = (event) => {
     const id = event.target.id;
-    const dele = products.filter((product) => product.id != id);
-    onDeleteProduct(dele);
-    console.log(dele);
-    console.log(id);
+    const productDeleted = products.filter((product) => product.id != id);
+    onDeleteProduct(productDeleted);
   };
 
   const handleEdit = (event) => {
+    const productToEditId = event.target.id;
+    const productToEdit = products.filter(
+      (product) => product.id == productToEditId
+    );
     handleViewForm("edit");
+    handleEditProduct(productToEdit);
   };
 
   return (

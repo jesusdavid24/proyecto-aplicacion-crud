@@ -3,18 +3,6 @@ import "./contact.scss";
 
 const Contact = () => {
   return (
-    // <div className="contact-card">
-    //   <div className="contact-card__photo">
-    //     <img className="photo" src="./public/yo.jpg" alt="" />
-    //   </div>
-    //   <div className="contact-card__info">
-    //     <h2>Cristian Jimenez</h2>
-    // <a href="https://github.com/Cristianjs93" target="_blank">
-    //   GitHub
-    // </a>
-    //     <h2>cristian.jimenezsa@hotmail.com</h2>
-    //   </div>
-    // </div>
     <div className="contact-container">
       <div className="contact-content">
         <h1 className="contact-content__title">THE CREW</h1>
@@ -23,9 +11,8 @@ const Contact = () => {
           <h2 className="content__info__title">WHO WE ARE?</h2>
 
           <p className="content__ info__paragraph">
-            We are a team of talents from the Colombian coast at the service of
-            programming and web development. Working in various locations from
-            the world.
+            We are a team of talents from Colombian's coast at the service of
+            programming and web development. Working from all over the world.
           </p>
         </div>
       </div>

@@ -1,7 +1,15 @@
 import React, { useState } from "react";
+import EditForm from "../EditForm/EditForm";
 import "./form.scss";
 
-const Form = ({ onAddProduct, viewForm }) => {
+const Form = ({
+  products,
+  onAddProduct,
+  viewForm,
+  handleViewForm,
+  editProduct,
+  handleEditedProducts,
+}) => {
   const [product, setProduct] = useState({
     product_name: "",
     color: "",
@@ -20,23 +28,23 @@ const Form = ({ onAddProduct, viewForm }) => {
   const handleAdd = (event) => {
     event.preventDefault();
 
-    if (product.product_name && product.color && product.price) {
-      const newProduct = {
-        ...product,
-        id: Date.now(),
-      };
+    // if (product.product_name && product.color && product.price) {
+    const newProduct = {
+      ...product,
+      id: Date.now(),
+    };
 
-      onAddProduct(newProduct);
+    onAddProduct(newProduct);
 
-      setProduct({
-        product_name: "",
-        color: "",
-        category: "Home",
-        price: "",
-      });
-    } else {
-      alert("Debes llenar todos los campos");
-    }
+    setProduct({
+      product_name: "",
+      color: "",
+      category: "Home",
+      price: "",
+    });
+    // } else {
+    //   alert("Debes llenar todos los campos");
+    // }
   };
 
   if (viewForm == true) {
@@ -98,63 +106,71 @@ const Form = ({ onAddProduct, viewForm }) => {
     );
   } else if (viewForm == "edit") {
     return (
-      <form className="form-container" onSubmit={handleAdd}>
-        <h1 className="form__title">Edit Product</h1>
+      <EditForm
+        products={products}
+        viewForm={viewForm}
+        handleViewForm={handleViewForm}
+        editProduct={editProduct}
+        handleEditedProducts={handleEditedProducts}
+      />
 
-        <aside className="form">
-          <label htmlFor="product_name">PRODUCT NAME</label>
-          <input
-            type="text"
-            name="product_name"
-            className="form__product-name"
-            onChange={handleChange}
-            value={product.product_name}
-            autoComplete="off"
-          />
+      // <form className="form-container" onSubmit={handleAdd}>
+      //   <h1 className="form__title">Edit Product</h1>
 
-          <label htmlFor="color">COLOR</label>
-          <input
-            type="text"
-            name="color"
-            className="form__product-color"
-            onChange={handleChange}
-            value={product.color}
-            autoComplete="off"
-          />
+      //   <aside className="form">
+      //     <label htmlFor="product_name">PRODUCT NAME</label>
+      //     <input
+      //       type="text"
+      //       name="product_name"
+      //       className="form__product-name"
+      //       onChange={handleChange}
+      //       value={product.product_name}
+      //       autoComplete="off"
+      //     />
 
-          <label htmlFor="category">CATEGORY</label>
-          <select
-            name="category"
-            className="form__product-category"
-            onChange={handleChange}
-            value={product.category}
-          >
-            <option value="Home">Home</option>
-            <option value="Music">Music</option>
-            <option value="Baby">Baby</option>
-            <option value="Books">Books</option>
-          </select>
+      //     <label htmlFor="color">COLOR</label>
+      //     <input
+      //       type="text"
+      //       name="color"
+      //       className="form__product-color"
+      //       onChange={handleChange}
+      //       value={product.color}
+      //       autoComplete="off"
+      //     />
 
-          <label htmlFor="price">PRICE</label>
-          <input
-            type="number"
-            name="price"
-            className="form__product-price"
-            onChange={handleChange}
-            value={product.price}
-          />
+      //     <label htmlFor="category">CATEGORY</label>
+      //     <select
+      //       name="category"
+      //       className="form__product-category"
+      //       onChange={handleChange}
+      //       value={product.category}
+      //     >
+      //       <option value="Home">Home</option>
+      //       <option value="Music">Music</option>
+      //       <option value="Baby">Baby</option>
+      //       <option value="Books">Books</option>
+      //     </select>
 
-          <div className="edit-buttons-container">
-            <button type="button" className="form__cancel-button">
-              Cancel
-            </button>
+      //     <label htmlFor="price">PRICE</label>
+      //     <input
+      //       type="number"
+      //       name="price"
+      //       className="form__product-price"
+      //       onChange={handleChange}
+      //       value={product.price}
+      //     />
 
-            <button type="button" className="form__update-button">
-              Update
-            </button>
-          </div>
-        </aside>
-      </form>
+      //     <div className="edit-buttons-container">
+      //       <button type="button" className="form__cancel-button">
+      //         Cancel
+      //       </button>
+
+      //       <button type="button" className="form__update-button">
+      //         Update
+      //       </button>
+      //     </div>
+      //   </aside>
+      // </form>
     );
   }
 };
