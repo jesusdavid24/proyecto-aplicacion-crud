@@ -82,7 +82,7 @@ const EditForm = ({
           value={editedProduct.price}
         />
 
-        <div className="editedProduct-buttons-container">
+        <div className="edit-buttons-container">
           <button
             type="button"
             className="form__cancel-button"

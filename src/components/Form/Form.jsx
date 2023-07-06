@@ -28,23 +28,23 @@ const Form = ({
   const handleAdd = (event) => {
     event.preventDefault();
 
-    // if (product.product_name && product.color && product.price) {
-    const newProduct = {
-      ...product,
-      id: Date.now(),
-    };
+    if (product.product_name && product.color && product.price) {
+      const newProduct = {
+        ...product,
+        id: Date.now(),
+      };
 
-    onAddProduct(newProduct);
+      onAddProduct(newProduct);
 
-    setProduct({
-      product_name: "",
-      color: "",
-      category: "Home",
-      price: "",
-    });
-    // } else {
-    //   alert("Debes llenar todos los campos");
-    // }
+      setProduct({
+        product_name: "",
+        color: "",
+        category: "Home",
+        price: "",
+      });
+    } else {
+      alert("Debes llenar todos los campos");
+    }
   };
 
   if (viewForm == true) {
