@@ -3,6 +3,7 @@ import Form from "./components/Form/Form";
 import Header from "./components/Header/Header";
 import Table from "./components/Table/Table";
 import Contact from "./components/Contact/Contact";
+import { postProduct } from "./api/product";
 import "./App.scss";
 
 function App() {
@@ -19,8 +20,10 @@ function App() {
       setViewForm(newViewForm);
    };
 
-   const handleAddProduct = (newProduct) => {
-      setProducts([...products, newProduct]);
+   const handleAddProduct = async (newProduct) => {
+      // setProducts([...products, newProduct]);
+      const data = await postProduct(newProduct);
+      setProducts([...products, data])
    };
 
    const handleDeleteProduct = (productDeleted) => {

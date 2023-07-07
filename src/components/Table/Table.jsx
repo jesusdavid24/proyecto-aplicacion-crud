@@ -51,6 +51,7 @@ const Table = ({ products = [], viewForm, onDeleteProduct, handleViewForm, handl
                   <tbody>
                      {products.map((product) => (
                         <tr key={product.id}>
+                           
                            <td>{product.product_name}</td>
 
                            <td>{product.color}</td>
