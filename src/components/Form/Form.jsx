@@ -3,176 +3,136 @@ import EditForm from "../EditForm/EditForm";
 import "./form.scss";
 
 const Form = ({
-  products,
-  onAddProduct,
-  viewForm,
-  handleViewForm,
-  editProduct,
-  handleEditedProducts,
+   products,
+   onAddProduct,
+   viewForm,
+   handleViewForm,
+   editProduct,
+   handleEditedProducts,
 }) => {
-  const [product, setProduct] = useState({
-    product_name: "",
-    color: "",
-    category: "Home",
-    price: "",
-  });
+   const [product, setProduct] = useState({
+      product_name: "",
+      color: "",
+      category: "Home",
+      price: "",
+   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setProduct({
-      ...product,
-      [name]: value,
-    });
-  };
+   const handleChange = (event) => {
+      const { name, value } = event.target;
 
-  const handleAdd = (event) => {
-    event.preventDefault();
+      const valueCapitalLetter = value.charAt(0).toUpperCase() + value.slice(1);
 
-    if (product.product_name && product.color && product.price) {
-      const newProduct = {
-        ...product,
-        id: Date.now(),
-      };
+      const valueWithoutNumber = value.replace(/[^a-zA-Z]/g, "");
 
-      onAddProduct(newProduct);
+      name == "product_name" &&
+         setProduct({
+            ...product,
+            [name]: valueCapitalLetter,
+         });
 
-      setProduct({
-        product_name: "",
-        color: "",
-        category: "Home",
-        price: "",
-      });
-    } else {
-      alert("Debes llenar todos los campos");
-    }
-  };
+      name == "color" &&
+         setProduct({
+            ...product,
+            [name]: valueWithoutNumber,
+         });
 
-  if (viewForm == true) {
-    return (
-      <form className="form-container" onSubmit={handleAdd}>
-        <h1 className="form__title">Add Product</h1>
+      (name == "price" || name == "category") &&
+         setProduct({
+            ...product,
+            [name]: value,
+         });
+   };
 
-        <aside className="form">
-          <label htmlFor="product_name">PRODUCT NAME</label>
-          <input
-            type="text"
-            name="product_name"
-            className="form__product-name"
-            onChange={handleChange}
-            placeholder="your product name"
-            value={product.product_name}
-            autoComplete="off"
-          />
+   const handleAdd = (event) => {
+      event.preventDefault();
 
-          <label htmlFor="color">COLOR</label>
-          <input
-            type="text"
-            name="color"
-            className="form__product-color"
-            onChange={handleChange}
-            placeholder="silver, black, white, etc"
-            value={product.color}
-            autoComplete="off"
-          />
+      if (product.product_name && product.color && product.price) {
+         const newProduct = {
+            ...product,
+            id: Date.now(),
+         };
 
-          <label htmlFor="category">CATEGORY</label>
-          <select
-            name="category"
-            className="form__product-category"
-            onChange={handleChange}
-            value={product.category}
-          >
-            <option value="Home">Home</option>
-            <option value="Music">Music</option>
-            <option value="Baby">Baby</option>
-            <option value="Books">Books</option>
-          </select>
+         onAddProduct(newProduct);
 
-          <label htmlFor="price">PRICE</label>
-          <input
-            type="number"
-            name="price"
-            className="form__product-price"
-            onChange={handleChange}
-            placeholder="$1999.99"
-            value={product.price}
-          />
+         setProduct({
+            product_name: "",
+            color: "",
+            category: "Home",
+            price: "",
+         });
+      } else {
+         alert("Debes llenar todos los campos");
+      }
+   };
 
-          <button type="submit" className="form__add-button">
-            Add
-          </button>
-        </aside>
-      </form>
-    );
-  } else if (viewForm == "edit") {
-    return (
-      <EditForm
-        products={products}
-        viewForm={viewForm}
-        handleViewForm={handleViewForm}
-        editProduct={editProduct}
-        handleEditedProducts={handleEditedProducts}
-      />
+   if (viewForm == true) {
+      return (
+         <form className="form-container" onSubmit={handleAdd}>
+            <h1 className="form__title">Add Product</h1>
 
-      // <form className="form-container" onSubmit={handleAdd}>
-      //   <h1 className="form__title">Edit Product</h1>
+            <aside className="form">
+               <label htmlFor="product_name">PRODUCT NAME</label>
+               <input
+                  type="text"
+                  name="product_name"
+                  className="form__product-name"
+                  onChange={handleChange}
+                  placeholder="your product name"
+                  value={product.product_name}
+                  autoComplete="off"
+               />
 
-      //   <aside className="form">
-      //     <label htmlFor="product_name">PRODUCT NAME</label>
-      //     <input
-      //       type="text"
-      //       name="product_name"
-      //       className="form__product-name"
-      //       onChange={handleChange}
-      //       value={product.product_name}
-      //       autoComplete="off"
-      //     />
+               <label htmlFor="color">COLOR</label>
+               <input
+                  type="text"
+                  name="color"
+                  className="form__product-color"
+                  onChange={handleChange}
+                  placeholder="silver, black, white, etc"
+                  value={product.color}
+                  title="Letters only"
+                  autoComplete="off"
+               />
 
-      //     <label htmlFor="color">COLOR</label>
-      //     <input
-      //       type="text"
-      //       name="color"
-      //       className="form__product-color"
-      //       onChange={handleChange}
-      //       value={product.color}
-      //       autoComplete="off"
-      //     />
+               <label htmlFor="category">CATEGORY</label>
+               <select
+                  name="category"
+                  className="form__product-category"
+                  onChange={handleChange}
+                  value={product.category}>
+                  <option value="Home">Home</option>
+                  <option value="Music">Music</option>
+                  <option value="Baby">Baby</option>
+                  <option value="Books">Books</option>
+               </select>
 
-      //     <label htmlFor="category">CATEGORY</label>
-      //     <select
-      //       name="category"
-      //       className="form__product-category"
-      //       onChange={handleChange}
-      //       value={product.category}
-      //     >
-      //       <option value="Home">Home</option>
-      //       <option value="Music">Music</option>
-      //       <option value="Baby">Baby</option>
-      //       <option value="Books">Books</option>
-      //     </select>
+               <label htmlFor="price">PRICE</label>
+               <input
+                  type="number"
+                  name="price"
+                  className="form__product-price"
+                  onChange={handleChange}
+                  placeholder="$1999.99"
+                  value={product.price}
+               />
 
-      //     <label htmlFor="price">PRICE</label>
-      //     <input
-      //       type="number"
-      //       name="price"
-      //       className="form__product-price"
-      //       onChange={handleChange}
-      //       value={product.price}
-      //     />
-
-      //     <div className="edit-buttons-container">
-      //       <button type="button" className="form__cancel-button">
-      //         Cancel
-      //       </button>
-
-      //       <button type="button" className="form__update-button">
-      //         Update
-      //       </button>
-      //     </div>
-      //   </aside>
-      // </form>
-    );
-  }
+               <button type="submit" className="form__add-button">
+                  Add
+               </button>
+            </aside>
+         </form>
+      );
+   } else if (viewForm == "edit") {
+      return (
+         <EditForm
+            products={products}
+            viewForm={viewForm}
+            handleViewForm={handleViewForm}
+            editProduct={editProduct}
+            handleEditedProducts={handleEditedProducts}
+         />
+      );
+   }
 };
 
 export default Form;
