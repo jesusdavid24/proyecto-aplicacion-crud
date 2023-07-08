@@ -34,8 +34,13 @@ function App() {
       const { id } = newProduct;
       if (isEdit) {
          const data = await editProduct(id, newProduct);
-         setProducts([...products, data]);
-         console.log("se hizo la solicitud");
+
+         const editedProductsList = products.map((product) =>
+            product.id === data.data.id ? data.data : product
+         );
+
+         setProducts(editedProductsList);
+         console.log(data.data);
       } else {
          const data = await postProduct(newProduct);
          setProducts([...products, data]);

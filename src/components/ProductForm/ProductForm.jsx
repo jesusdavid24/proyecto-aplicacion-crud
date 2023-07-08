@@ -49,6 +49,7 @@ const ProductForm = ({ title, isEdit, productToEdit, onAddProduct, onEditProduct
          };
 
          isEdit ? onEditProduct(newProduct) : onAddProduct(newProduct);
+         isEdit && newProduct ? onAddProduct(newProduct) : null;
 
          setProduct({
             product_name: "",
