@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "./table.scss";
 
 const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
-   const handleDelete = (id) => {
+   const handleDeleteButton = (id) => {
       onDeleteProduct(id);
    };
 
-   const handleEdit = (id) => {
-      onEditProduct(id);
+   const handleEditButton = (productToEdit) => {
+      onEditProduct(productToEdit);
    };
 
    return products.length == 0 ? (
@@ -44,13 +44,13 @@ const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
                      <td className="products-table__buttons-td">
                         <button
                            className="products-table__edit-button"
-                           onClick={() => handleEdit(product.id)}>
+                           onClick={() => handleEditButton(product)}>
                            Edit
                         </button>
                         <span>|</span>
                         <button
                            className="products-table__delete-button"
-                           onClick={() => handleDelete(product.id)}>
+                           onClick={() => handleDeleteButton(product.id)}>
                            Delete
                         </button>
                      </td>

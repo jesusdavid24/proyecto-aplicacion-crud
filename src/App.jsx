@@ -1,9 +1,9 @@
-import { useState } from "react";
-import ProductForm from "./components/Form/Form";
+import { useState, useEffect } from "react";
+import ProductForm from "./components/ProductForm/ProductForm";
 import Header from "./components/Header/Header";
 import Table from "./components/Table/Table";
 import Contact from "./components/Contact/Contact";
-import { postProduct, deleteProduct } from "./api/product";
+import { getProduct, postProduct, editProduct, deleteProduct } from "./api/product";
 import "./App.scss";
 
 function App() {
@@ -11,14 +11,15 @@ function App() {
    const [showForm, setShowForm] = useState(false);
    const [products, setProducts] = useState([]);
    const [productToEdit, setProductToEdit] = useState(null);
-
-   const [formTitle, setFormTitle] = useState("Agregar producto");
    const [isEdit, setIsEdit] = useState(false);
+
+   useEffect(() => {
+      getProduct().then((response) => setProducts(response.data));
+   }, []);
 
    const handleAddButtonClick = () => {
       if (!showForm) {
          setIsEdit(false);
-         setFormTitle("Agregar producto");
          setProductToEdit(null);
       }
 
@@ -30,9 +31,15 @@ function App() {
    };
 
    const handleAddProduct = async (newProduct) => {
-      // setProducts([...products, newProduct]);
-      const data = await postProduct(newProduct);
-      setProducts([...products, data]);
+      const { id } = newProduct;
+      if (isEdit) {
+         const data = await editProduct(id, newProduct);
+         setProducts([...products, data]);
+         console.log("se hizo la solicitud");
+      } else {
+         const data = await postProduct(newProduct);
+         setProducts([...products, data]);
+      }
    };
 
    const handleDeleteProduct = async (id) => {
@@ -40,23 +47,20 @@ function App() {
       setProducts(products.filter((product) => product.id !== id));
    };
 
-   const onEditProduct = (id) => {
-      setFormTitle("Editar producto");
-      setProductToEdit(products.find((x) => x.id === id));
+   const handleEditProduct = (productToEdit) => {
+      setProductToEdit(productToEdit);
       setIsEdit(true);
       setShowForm(true);
-   };
 
-   const handleEditProduct = (product) => {
-      console.log("Producto editado", product);
-      // setProducts();
+      const editedProducts = products.map((product) =>
+         product.id === productToEdit.id ? productToEdit : product
+      );
+      setProducts(editedProducts);
    };
 
    return (
       <div className="container">
-         <div className="app-header">
-            <Header handleViewPage={handleViewPage} />
-         </div>
+         <Header handleViewPage={handleViewPage} />
 
          {viewPage === "products" ? (
             <div className="app-form">
@@ -71,25 +75,34 @@ function App() {
                   <Table
                      products={products}
                      onDeleteProduct={handleDeleteProduct}
-                     showForm={showForm}
-                     onEditProduct={onEditProduct}
+                     onEditProduct={handleEditProduct}
                   />
                </div>
 
                {showForm && (
                   <ProductForm
-                     title={formTitle}
+                     title={isEdit ? "Edit Product" : "Add Product"}
+                     products={products}
                      isEdit={isEdit}
-                     productToEdit={productToEdit}
                      onAddProduct={handleAddProduct}
+                     productToEdit={productToEdit}
                      onEditProduct={handleEditProduct}>
                      {isEdit ? (
-                        <>
-                           <button type="reset">Limpiar formulario</button>
-                           <button type="submit">Actualizar</button>
-                        </>
+                        <div className="edit-buttons-container">
+                           <button
+                              type="button"
+                              className="form__cancel-button"
+                              onClick={() => setShowForm(false)}>
+                              Cancel
+                           </button>
+                           <button type="submit" className="form__update-button">
+                              Update
+                           </button>
+                        </div>
                      ) : (
-                        <button type="submit">Agregar</button>
+                        <button type="submit" className="form__add-button">
+                           Add
+                        </button>
                      )}
                   </ProductForm>
                )}
@@ -100,5 +113,4 @@ function App() {
       </div>
    );
 }
-
 export default App;

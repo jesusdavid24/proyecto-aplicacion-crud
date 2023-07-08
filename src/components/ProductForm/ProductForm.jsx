@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import "./editForm.scss";
+import "./productform.scss";
 
-const EditForm = ({ products, handleViewForm, viewForm, editProduct, handleEditedProducts }) => {
-   const [editedProduct, setEditedProduct] = useState({
+const ProductForm = ({ title, isEdit, productToEdit, onAddProduct, onEditProduct, children }) => {
+   const [product, setProduct] = useState({
       product_name: "",
       color: "",
-      category: "",
+      category: "Home",
       price: "",
+      ...productToEdit,
    });
 
    useEffect(() => {
-      setEditedProduct(editProduct[0]);
-   }, [editProduct]);
+      setProduct({ ...product, ...productToEdit });
+   }, [productToEdit]);
 
    const handleChange = (event) => {
       const { name, value } = event.target;
@@ -21,41 +22,48 @@ const EditForm = ({ products, handleViewForm, viewForm, editProduct, handleEdite
       const valueWithoutNumber = value.replace(/[^a-zA-Z]/g, "");
 
       name == "product_name" &&
-         setEditedProduct({
-            ...editedProduct,
+         setProduct({
+            ...product,
             [name]: valueCapitalLetter,
          });
 
       name == "color" &&
-         setEditedProduct({
-            ...editedProduct,
+         setProduct({
+            ...product,
             [name]: valueWithoutNumber,
          });
+
       (name == "price" || name == "category") &&
-         setEditedProduct({
-            ...editedProduct,
+         setProduct({
+            ...product,
             [name]: value,
          });
    };
 
-   const handleCancel = (event) => {
-      handleViewForm(!viewForm);
-   };
+   const handleAdd = (event) => {
+      event.preventDefault();
 
-   const handleUpdate = (event) => {
-      if (editedProduct.product_name && editedProduct.color && editedProduct.price) {
-         const edited = products.map((product) =>
-            product.id === editedProduct.id ? editedProduct : product
-         );
-         handleEditedProducts(edited);
+      if (product.product_name && product.color && product.price) {
+         const newProduct = {
+            ...product,
+         };
+
+         isEdit ? onEditProduct(newProduct) : onAddProduct(newProduct);
+
+         setProduct({
+            product_name: "",
+            color: "",
+            category: "Home",
+            price: "",
+         });
       } else {
          alert("Debes llenar todos los campos");
       }
    };
 
    return (
-      <form className="form-container">
-         <h1 className="form__title">Edit Product</h1>
+      <form className="form-container" onSubmit={handleAdd}>
+         <h1 className="form__title">{title}</h1>
 
          <aside className="form">
             <label htmlFor="product_name">PRODUCT NAME</label>
@@ -64,7 +72,8 @@ const EditForm = ({ products, handleViewForm, viewForm, editProduct, handleEdite
                name="product_name"
                className="form__product-name"
                onChange={handleChange}
-               value={editedProduct.product_name}
+               placeholder="your product name"
+               value={product.product_name}
                autoComplete="off"
             />
 
@@ -74,7 +83,9 @@ const EditForm = ({ products, handleViewForm, viewForm, editProduct, handleEdite
                name="color"
                className="form__product-color"
                onChange={handleChange}
-               value={editedProduct.color}
+               placeholder="silver, black, white, etc"
+               value={product.color}
+               title="Letters only"
                autoComplete="off"
             />
 
@@ -83,8 +94,7 @@ const EditForm = ({ products, handleViewForm, viewForm, editProduct, handleEdite
                name="category"
                className="form__product-category"
                onChange={handleChange}
-               value={editedProduct.category}
-            >
+               value={product.category}>
                <option value="Home">Home</option>
                <option value="Music">Music</option>
                <option value="Baby">Baby</option>
@@ -97,21 +107,14 @@ const EditForm = ({ products, handleViewForm, viewForm, editProduct, handleEdite
                name="price"
                className="form__product-price"
                onChange={handleChange}
-               value={editedProduct.price}
+               placeholder="$1999.99"
+               value={product.price}
             />
 
-            <div className="edit-buttons-container">
-               <button type="button" className="form__cancel-button" onClick={handleCancel}>
-                  Cancel
-               </button>
-
-               <button type="button" className="form__update-button" onClick={handleUpdate}>
-                  Update
-               </button>
-            </div>
+            {children}
          </aside>
       </form>
    );
 };
 
-export default EditForm;
+export default ProductForm;
