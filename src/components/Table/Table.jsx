@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Toast from "../../utils/Toast";
-
 import "./table.scss";
 
 const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
@@ -16,18 +15,7 @@ const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
       onEditProduct(productToEdit);
    };
 
-   return products.length == 0 ? (
-      <div className="dot-spinner">
-         <div className="dot-spinner__dot"></div>
-         <div className="dot-spinner__dot"></div>
-         <div className="dot-spinner__dot"></div>
-         <div className="dot-spinner__dot"></div>
-         <div className="dot-spinner__dot"></div>
-         <div className="dot-spinner__dot"></div>
-         <div className="dot-spinner__dot"></div>
-         <div className="dot-spinner__dot"></div>
-      </div>
-   ) : (
+   return (
       <div className="table">
          <table className="products-table">
             <thead>
@@ -44,6 +32,11 @@ const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
                </tr>
             </thead>
             <tbody>
+               {!products.length && (
+                  <tr className="table-void">
+                     <td className="table--void__td" colSpan="5">No se encontraron productos</td>
+                  </tr>
+               )}
                {products.map((product) => (
                   <tr key={product.id}>
                      <td>{product.product_name}</td>

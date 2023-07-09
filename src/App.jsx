@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductForm from "./components/ProductForm/ProductForm";
 import Header from "./components/Header/Header";
 import Table from "./components/Table/Table";
@@ -6,15 +7,20 @@ import Contact from "./components/Contact/Contact";
 import { getProduct, postProduct, editProduct, deleteProduct } from "./api/product";
 import "./App.scss";
 
+
 function App() {
    const [viewPage, setViewPage] = useState("products");
    const [showForm, setShowForm] = useState(false);
    const [isEdit, setIsEdit] = useState(false);
+   const [isLoading, setIsLoading] = useState(true);
    const [products, setProducts] = useState([]);
    const [productToEdit, setProductToEdit] = useState(null);
 
    useEffect(() => {
-      getProduct().then((response) => setProducts(response));
+      getProduct().then((x) => {
+         setProducts(x);
+         setIsLoading(false);
+      });
    }, []);
 
    const handleAddButtonClick = () => {
@@ -33,9 +39,11 @@ function App() {
          const data = await editProduct(id, newProduct);
 
          const editedProductsList = products.map((product) =>
-            product.id === data.id ? data : product
+            product.id == data.id ? data : product
          );
+
          setProducts(editedProductsList);
+
       } else {
          const data = await postProduct(newProduct);
          setProducts([...products, data]);
@@ -43,10 +51,7 @@ function App() {
    };
 
    const handleDeleteProduct = async (id) => {
-      const response = window.confirm("Are you sure to delete this product?");
-
-      response &&
-         (await deleteProduct(id), setProducts(products.filter((product) => product.id !== id)));
+      await deleteProduct(id), setProducts(products.filter((product) => product.id !== id));
    };
 
    const handleEditProduct = (productToEdit) => {
@@ -69,11 +74,25 @@ function App() {
                      </button>
                   </div>
 
-                  <Table
-                     products={products}
-                     onDeleteProduct={handleDeleteProduct}
-                     onEditProduct={handleEditProduct}
-                  />
+                  {isLoading ? (
+                     <div className="dot-spinner">
+                        <div className="dot-spinner__dot"></div>
+                        <div className="dot-spinner__dot"></div>
+                        <div className="dot-spinner__dot"></div>
+                        <div className="dot-spinner__dot"></div>
+                        <div className="dot-spinner__dot"></div>
+                        <div className="dot-spinner__dot"></div>
+                        <div className="dot-spinner__dot"></div>
+                        <div className="dot-spinner__dot"></div>
+                     </div> 
+                  ) : (
+                     <Table
+                        products={products}
+                        onDeleteProduct={handleDeleteProduct}
+                        onEditProduct={handleEditProduct}
+                     />
+                  )}
+
                </div>
 
                {showForm && (

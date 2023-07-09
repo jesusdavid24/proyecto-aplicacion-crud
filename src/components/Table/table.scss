@@ -166,6 +166,10 @@
          background-color: rgb(247, 247, 247);
       }
 
+      .table--void__td {
+         text-align: center !important;
+      }
+
       .products-table thead th {
          width: calc(50% / 3);
          text-align: center;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Toast from "../../utils/Toast";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./productForm.scss";
+import  Form from 'react-bootstrap/Form';
 
 const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct, children }) => {
    const [product, setProduct] = useState({
@@ -74,7 +76,7 @@ const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct
       } else {
          Toast.fire({
             icon: "error",
-            title: "Debes diligenciar todos los campos",
+            title: "All fields are required",
          });
       }
    };
@@ -108,16 +110,31 @@ const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct
             />
 
             <label htmlFor="category">CATEGORY</label>
-            <select
+            <Form.Select 
+               aria-label="Default select example"
+               size="sm"
                name="category"
                className="form__product-category"
+               onChange={handleChange}
+               value={product.category}
+            >
+               <option>Selecciona una opcion</option>
+               <option value="Home">Home</option>
+               <option value="Music">Music</option>
+               <option value="Baby">Baby</option>
+               <option value="Books">Books</option>
+            </Form.Select>
+
+            {/* <select
+               name="category"
+               className="form__product-category bg-black"
                onChange={handleChange}
                value={product.category}>
                <option value="Home">Home</option>
                <option value="Music">Music</option>
                <option value="Baby">Baby</option>
                <option value="Books">Books</option>
-            </select>
+            </select> */}
 
             <label htmlFor="price">PRICE</label>
             <input
