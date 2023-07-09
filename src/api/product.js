@@ -10,7 +10,7 @@ export const getProduct = async () => {
       return await response.json();
    }
 
-   throw new Error("Ha ocurrido un error");
+   throw new Error("An error has ocurred");
 };
 
 export const postProduct = async (body) => {
@@ -26,33 +26,39 @@ export const postProduct = async (body) => {
       return await response.json();
    }
 
-   throw new Error("Ha ocurrido un error");
+   throw new Error("An error has ocurred");
 };
 
 export const editProduct = async (id, body) => {
-   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/product/updateProduct/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(body),
-      headers: {
-         "Content-Type": "application/json",
-      },
-   });
+   const response = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/product/updateProduct/${id}`,
+      {
+         method: "PUT",
+         body: JSON.stringify(body),
+         headers: {
+            "Content-Type": "application/json",
+         },
+      }
+   );
 
    if (response.ok) {
       return await response.json();
    }
 
-   throw new Error("Ha ocurrido un error");
+   throw new Error("An error has ocurred");
 };
 
 export const deleteProduct = async (id) => {
-   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/product/deleteProduct/${id}`, {
-      method: "DELETE",
-   });
+   const response = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/product/deleteProduct/${id}`,
+      {
+         method: "DELETE",
+      }
+   );
 
    if (response.ok) {
       return await response.json();
    }
 
-   throw new Error("Ha ocurrido un error");
+   throw new Error("An error has ocurred");
 };

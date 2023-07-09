@@ -46,33 +46,35 @@ const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct
 
       if (product.product_name && product.color && product.price) {
          const newProduct = {
-         ...product,
-      };
+            ...product,
+         };
 
          if (isEdit) {
             onEditProduct(newProduct);
             Toast.fire({
-               icon: 'success',
-               title: 'Producto actualizado exitosamente!',
+               icon: "success",
+               title: "Product successfully upgraded!",
             });
          } else {
             onAddProduct(newProduct);
             Toast.fire({
-               icon: 'success',
-               title: 'Nuevo producto agregado!',
+               icon: "success",
+               title: "New product added!",
             });
          }
 
+         isEdit && newProduct ? onAddProduct(newProduct) : null;
+
          setProduct({
-            product_name: '',
-            color: '',
-            category: 'Home',
-            price: '',
+            product_name: "",
+            color: "",
+            category: "Home",
+            price: "",
          });
-         } else {
+      } else {
          Toast.fire({
-            icon: 'error',
-            title: 'Debes diligenciar todos los campos',
+            icon: "error",
+            title: "Debes diligenciar todos los campos",
          });
       }
    };

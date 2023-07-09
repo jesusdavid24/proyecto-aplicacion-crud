@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import Toast from "../../utils/Toast";
+
 import "./table.scss";
 
 const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
    const handleDeleteButton = (id) => {
       onDeleteProduct(id);
+      Toast.fire({
+         icon: "success",
+         title: "Product deleted!",
+      });
    };
 
    const handleEditButton = (productToEdit) => {
