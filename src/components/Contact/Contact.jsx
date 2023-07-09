@@ -1,6 +1,6 @@
 import React from "react";
 import jesus from '../../assets/img/jesus.png';
-import cristian from '../../assets/img/Cristian.jpg';
+import cristian from '../../assets/img/cristian.jpg';
 import "./contact.scss";
 
 const Contact = () => {
