@@ -14,7 +14,7 @@ function App() {
    const [isEdit, setIsEdit] = useState(false);
 
    useEffect(() => {
-      getProduct().then((response) => setProducts(response.data));
+      getProduct().then((x) => setProducts(x));
    }, []);
 
    const handleAddButtonClick = () => {
@@ -38,9 +38,7 @@ function App() {
          const editedProductsList = products.map((product) =>
             product.id === data.data.id ? data.data : product
          );
-
          setProducts(editedProductsList);
-         console.log(data.data);
       } else {
          const data = await postProduct(newProduct);
          setProducts([...products, data]);

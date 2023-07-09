@@ -48,8 +48,8 @@
       }
 
       .container-images__pictures {
-         width: 230px;
-         height: 310px;
+         width: 260px;
+         height: 290px;
          justify-content: center;
          margin: 20px;
          margin: 0;
@@ -59,9 +59,12 @@
       }
       .container-images__profession {
          font-size: 10px;
+         position: relative; 
          writing-mode: vertical-lr;
-         text-orientation: mixed;
-         margin: 0;
+         margin-left: 10px;
+         transform-origin: top right; 
+         transform: translate(1925%, -260%);
+         font-weight: normal;
       }
       .container-images__name {
          margin-top: 10px;

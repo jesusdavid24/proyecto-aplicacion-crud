@@ -1,4 +1,6 @@
 import React from "react";
+import jesus from '../../assets/img/jesus.png';
+import cristian from '../../assets/img/Cristian.jpg';
 import "./contact.scss";
 
 const Contact = () => {
@@ -16,10 +18,7 @@ const Contact = () => {
          </div>
          <section className="container-images">
             <div className="container-images__img">
-               <img
-                  className="container-images__pictures"
-                  src="../../public/contact__Cristian.jpg"
-               />
+               <img className="container-images__pictures"src={cristian}/>
                <h3 className="container-images__profession">FULLSTACK DEVELOPER</h3>
                <h3 className="container-images__name">Cristian Jimenez</h3>
                <h3 className="container-images__email">cristian.jimenezsa@hotmail.com</h3>
@@ -35,10 +34,10 @@ const Contact = () => {
                </h3>
             </div>
             <div className="container-images__img">
-               <img className="container-images__pictures" src="../../public/contact__Jesus.jpeg" />
+               <img className="container-images__pictures" src={jesus}/>
                <h3 className="container-images__profession">FULLSTACK DEVELOPER</h3>
                <h3 className="container-images__name">Jesus Bravo</h3>
-               <h3 className="container-images__email">jesusBravoexample@test.com</h3>
+               <h3 className="container-images__email">jd_bravo24@hotmail.com</h3>
                <h3 className="container-images__github">
                   Github: &nbsp;
                   <a
