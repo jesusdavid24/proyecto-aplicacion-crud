@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ProductForm from "./components/ProductForm/ProductForm";
 import Header from "./components/Header/Header";
-import Table from "./components/Table/Table";
+import TableForm from "./components/Table/Table";
 import Contact from "./components/Contact/Contact";
 import { getProduct, postProduct, editProduct, deleteProduct } from "./api/product";
 import "./App.scss";
@@ -61,7 +61,7 @@ function App() {
    };
 
    return (
-      <div className="container">
+      <div className="container-fluid p-0">
          <Header handleViewPage={handleViewPage} />
 
          {viewPage === "products" ? (
@@ -86,7 +86,7 @@ function App() {
                         <div className="dot-spinner__dot"></div>
                      </div> 
                   ) : (
-                     <Table
+                     <TableForm
                         products={products}
                         onDeleteProduct={handleDeleteProduct}
                         onEditProduct={handleEditProduct}

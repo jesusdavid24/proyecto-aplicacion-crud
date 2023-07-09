@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Toast from "../../utils/Toast";
+import Table from 'react-bootstrap/Table';
 import "./table.scss";
 
-const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
+const TableForm = ({ products = [], onDeleteProduct, onEditProduct }) => {
    const handleDeleteButton = (id) => {
       onDeleteProduct(id);
       Toast.fire({
@@ -17,7 +18,7 @@ const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
 
    return (
       <div className="table">
-         <table className="products-table">
+         <Table className="products-table" responsive>
             <thead>
                <tr key="table-head">
                   <th>PRODUCT NAME</th>
@@ -48,24 +49,26 @@ const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
                      <td>{`$${product.price}`}</td>
 
                      <td className="products-table__buttons-td">
-                        <button
-                           className="products-table__edit-button"
-                           onClick={() => handleEditButton(product)}>
-                           Edit
-                        </button>
-                        <span>|</span>
-                        <button
-                           className="products-table__delete-button"
-                           onClick={() => handleDeleteButton(product.id)}>
-                           Delete
-                        </button>
+                        <div className="d-flex">
+                           <button
+                              className="products-table__edit-button"
+                              onClick={() => handleEditButton(product)}>
+                              Edit
+                           </button>
+                           <span>|</span>
+                           <button
+                              className="products-table__delete-button"
+                              onClick={() => handleDeleteButton(product.id)}>
+                              Delete
+                           </button>
+                        </div>
                      </td>
                   </tr>
                ))}
             </tbody>
-         </table>
+         </Table>
       </div>
    );
 };
 
-export default Table;
+export default TableForm;

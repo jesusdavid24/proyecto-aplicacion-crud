@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Toast from "../../utils/Toast";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Form from 'react-bootstrap/Form';
 import "./productForm.scss";
-import  Form from 'react-bootstrap/Form';
 
 const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct, children }) => {
    const [product, setProduct] = useState({
@@ -116,25 +115,13 @@ const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct
                name="category"
                className="form__product-category"
                onChange={handleChange}
-               value={product.category}
             >
-               <option>Selecciona una opcion</option>
+               <option>Escoja una categoria</option>
                <option value="Home">Home</option>
                <option value="Music">Music</option>
                <option value="Baby">Baby</option>
                <option value="Books">Books</option>
             </Form.Select>
-
-            {/* <select
-               name="category"
-               className="form__product-category bg-black"
-               onChange={handleChange}
-               value={product.category}>
-               <option value="Home">Home</option>
-               <option value="Music">Music</option>
-               <option value="Baby">Baby</option>
-               <option value="Books">Books</option>
-            </select> */}
 
             <label htmlFor="price">PRICE</label>
             <input
