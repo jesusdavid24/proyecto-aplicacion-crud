@@ -11,9 +11,16 @@ const Table = ({ products = [], onDeleteProduct, onEditProduct }) => {
    };
 
    return products.length == 0 ? (
-      <h1 className="table__empty-products">
-         There are no products to show. Please click Add button to start.
-      </h1>
+      <div className="dot-spinner">
+         <div className="dot-spinner__dot"></div>
+         <div className="dot-spinner__dot"></div>
+         <div className="dot-spinner__dot"></div>
+         <div className="dot-spinner__dot"></div>
+         <div className="dot-spinner__dot"></div>
+         <div className="dot-spinner__dot"></div>
+         <div className="dot-spinner__dot"></div>
+         <div className="dot-spinner__dot"></div>
+      </div>
    ) : (
       <div className="table">
          <table className="products-table">

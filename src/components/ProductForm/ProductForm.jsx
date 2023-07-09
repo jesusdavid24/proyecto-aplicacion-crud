@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./productform.scss";
 
-const ProductForm = ({ title, isEdit, productToEdit, onAddProduct, onEditProduct, children }) => {
+const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct, children }) => {
    const [product, setProduct] = useState({
       product_name: "",
       color: "",
@@ -63,10 +63,10 @@ const ProductForm = ({ title, isEdit, productToEdit, onAddProduct, onEditProduct
    };
 
    return (
-      <form className="form-container" onSubmit={handleAdd}>
+      <aside className="form-container">
          <h1 className="form__title">{title}</h1>
 
-         <aside className="form">
+         <form className="form" onSubmit={handleAdd}>
             <label htmlFor="product_name">PRODUCT NAME</label>
             <input
                type="text"
@@ -113,8 +113,8 @@ const ProductForm = ({ title, isEdit, productToEdit, onAddProduct, onEditProduct
             />
 
             {children}
-         </aside>
-      </form>
+         </form>
+      </aside>
    );
 };
 

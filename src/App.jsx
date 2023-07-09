@@ -9,19 +9,16 @@ import "./App.scss";
 function App() {
    const [viewPage, setViewPage] = useState("products");
    const [showForm, setShowForm] = useState(false);
+   const [isEdit, setIsEdit] = useState(false);
    const [products, setProducts] = useState([]);
    const [productToEdit, setProductToEdit] = useState(null);
-   const [isEdit, setIsEdit] = useState(false);
 
    useEffect(() => {
       getProduct().then((response) => setProducts(response.data));
    }, []);
 
    const handleAddButtonClick = () => {
-      if (!showForm) {
-         setIsEdit(false);
-         setProductToEdit(null);
-      }
+      !showForm && (setIsEdit(false), setProductToEdit(null));
 
       setShowForm(!showForm);
    };
@@ -40,7 +37,6 @@ function App() {
          );
 
          setProducts(editedProductsList);
-         console.log(data.data);
       } else {
          const data = await postProduct(newProduct);
          setProducts([...products, data]);
@@ -48,19 +44,16 @@ function App() {
    };
 
    const handleDeleteProduct = async (id) => {
-      await deleteProduct(id);
-      setProducts(products.filter((product) => product.id !== id));
+      const response = window.confirm("Are you sure to delete this product?");
+
+      response &&
+         (await deleteProduct(id), setProducts(products.filter((product) => product.id !== id)));
    };
 
    const handleEditProduct = (productToEdit) => {
       setProductToEdit(productToEdit);
       setIsEdit(true);
       setShowForm(true);
-
-      const editedProducts = products.map((product) =>
-         product.id === productToEdit.id ? productToEdit : product
-      );
-      setProducts(editedProducts);
    };
 
    return (
@@ -90,8 +83,8 @@ function App() {
                      products={products}
                      isEdit={isEdit}
                      onAddProduct={handleAddProduct}
-                     productToEdit={productToEdit}
-                     onEditProduct={handleEditProduct}>
+                     onEditProduct={handleEditProduct}
+                     productToEdit={productToEdit}>
                      {isEdit ? (
                         <div className="edit-buttons-container">
                            <button
