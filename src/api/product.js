@@ -1,5 +1,5 @@
 export const getProduct = async () => {
-   const response = await fetch("http://localhost:3001/product/", {
+   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/product/`, {
       method: "GET",
       headers: {
          "Content-Type": "application/json",
@@ -14,7 +14,7 @@ export const getProduct = async () => {
 };
 
 export const postProduct = async (body) => {
-   const response = await fetch("http://localhost:3001/product/createProduct", {
+   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/product/createProduct`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: {
@@ -30,7 +30,7 @@ export const postProduct = async (body) => {
 };
 
 export const editProduct = async (id, body) => {
-   const response = await fetch(`http://localhost:3001/product/updateProduct/${id}`, {
+   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/product/updateProduct/${id}`, {
       method: "PUT",
       body: JSON.stringify(body),
       headers: {
@@ -46,7 +46,7 @@ export const editProduct = async (id, body) => {
 };
 
 export const deleteProduct = async (id) => {
-   const response = await fetch(`http://localhost:3001/product/deleteProduct/${id}`, {
+   const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/product/deleteProduct/${id}`, {
       method: "DELETE",
    });
 

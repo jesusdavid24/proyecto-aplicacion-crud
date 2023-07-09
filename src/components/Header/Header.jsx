@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from '../../assets/svg/logo.svg'
 import "./header.scss";
 
 const Header = ({ handleViewPage }) => {
@@ -20,7 +21,7 @@ const Header = ({ handleViewPage }) => {
    return (
       <header className="header">
          <div className="logo-container" onClick={handlePage}>
-            <img id="logo" src="../../../public/logo.svg" className="header__logo" />
+            <img id="logo" src={logo} className="header__logo" />
             <h1 id="logo" className="header__title">
                My Site
             </h1>

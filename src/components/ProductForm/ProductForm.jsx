@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./productform.scss";
+import Toast from "../../utils/Toast";
+import "./productForm.scss";
 
 const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct, children }) => {
    const [product, setProduct] = useState({
@@ -45,20 +46,34 @@ const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct
 
       if (product.product_name && product.color && product.price) {
          const newProduct = {
-            ...product,
-         };
+         ...product,
+      };
 
-         isEdit ? onEditProduct(newProduct) : onAddProduct(newProduct);
-         isEdit && newProduct ? onAddProduct(newProduct) : null;
+         if (isEdit) {
+            onEditProduct(newProduct);
+            Toast.fire({
+               icon: 'success',
+               title: 'Producto actualizado exitosamente!',
+            });
+         } else {
+            onAddProduct(newProduct);
+            Toast.fire({
+               icon: 'success',
+               title: 'Nuevo producto agregado!',
+            });
+         }
 
          setProduct({
-            product_name: "",
-            color: "",
-            category: "Home",
-            price: "",
+            product_name: '',
+            color: '',
+            category: 'Home',
+            price: '',
          });
-      } else {
-         alert("Debes llenar todos los campos");
+         } else {
+         Toast.fire({
+            icon: 'error',
+            title: 'Debes diligenciar todos los campos',
+         });
       }
    };
 
