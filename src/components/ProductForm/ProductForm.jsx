@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Toast from "../../utils/Toast";
-import "./productform.scss";
+import "./productForm.scss";
 
 const ProductForm = ({ title, isEdit, productToEdit, onAddProduct, onEditProduct, children }) => {
    const [product, setProduct] = useState({
