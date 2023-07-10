@@ -25,7 +25,6 @@ function App() {
 
    const handleAddButtonClick = () => {
       !showForm && (setIsEdit(false), setProductToEdit(null));
-
       setShowForm(!showForm);
    };
 
@@ -43,10 +42,12 @@ function App() {
          );
 
          setProducts(editedProductsList);
-
+         setShowForm(false)
+         
       } else {
          const data = await postProduct(newProduct);
          setProducts([...products, data]);
+         setShowForm(false)
       }
    };
 

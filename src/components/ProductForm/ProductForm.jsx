@@ -32,7 +32,7 @@ const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct
       name == "color" &&
          setProduct({
             ...product,
-            [name]: valueWithoutNumber,
+            [name]: valueCapitalLetter
          });
 
       (name == "price" || name == "category") &&
@@ -116,7 +116,7 @@ const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct
                className="form__product-category"
                onChange={handleChange}
             >
-               <option>Escoja una categoria</option>
+               <option>Choose a category</option>
                <option value="Home">Home</option>
                <option value="Music">Music</option>
                <option value="Baby">Baby</option>
@@ -126,6 +126,7 @@ const ProductForm = ({ title, onAddProduct, isEdit, productToEdit, onEditProduct
             <label htmlFor="price">PRICE</label>
             <input
                type="number"
+               min={0}
                name="price"
                className="form__product-price"
                onChange={handleChange}

@@ -35,7 +35,7 @@ const TableForm = ({ products = [], onDeleteProduct, onEditProduct }) => {
             <tbody>
                {!products.length && (
                   <tr className="table-void">
-                     <td className="table--void__td" colSpan="5">No se encontraron productos</td>
+                     <td className="table--void__td" colSpan="5">There are not products to show</td>
                   </tr>
                )}
                {products.map((product) => (
@@ -46,7 +46,7 @@ const TableForm = ({ products = [], onDeleteProduct, onEditProduct }) => {
 
                      <td>{product.category}</td>
 
-                     <td>{`$${product.price}`}</td>
+                     <td>{`$ ${product.price}`}</td>
 
                      <td className="products-table__buttons-td">
                         <div className="d-flex">
