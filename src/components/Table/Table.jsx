@@ -46,7 +46,7 @@ const TableForm = ({ products = [], onDeleteProduct, onEditProduct }) => {
 
                      <td>{product.category}</td>
 
-                     <td>{`$ ${product.price}`}</td>
+                     <td>{`$${product.price}`}</td>
 
                      <td className="products-table__buttons-td">
                         <div className="d-flex">
